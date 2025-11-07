@@ -11,7 +11,7 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://bharath-n.vercel.app', // Update with your actual domain when deployed
+  site: 'https://portfolio-nbb1sbdmo-bharaths-projects-f385be84.vercel.app/',
   vite: {
     plugins: [tailwindcss()]
   },
