@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+.bg-gradient-animated {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(16, 185, 129, 0.25), transparent 55%),
+    radial-gradient(circle at 80% 30%, rgba(110, 231, 183, 0.2), transparent 60%),
+    radial-gradient(circle at 50% 80%, rgba(16, 185, 129, 0.2), transparent 55%),
+    linear-gradient(120deg, #0f172a, #020617, #111827);
+  background-size: 200% 200%;
+  animation: gradient-shift 30s ease infinite;
+}
+
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence baseFrequency='1' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.8'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Custom prose styles for blog content */
+.prose {
+  @apply text-zinc-700 dark:text-zinc-300;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  @apply font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mt-8 mb-4;
+}
+
+.prose h1 {
+  @apply text-3xl;
+}
+
+.prose h2 {
+  @apply text-2xl;
+}
+
+.prose h3 {
+  @apply text-xl;
+}
+
+.prose p {
+  @apply mb-4 leading-relaxed;
+}
+
+.prose a {
+  @apply text-emerald-600 dark:text-emerald-400 hover:underline;
+}
+
+.prose code {
+  @apply bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-sm font-mono;
+}
+
+.prose pre {
+  @apply bg-zinc-900 dark:bg-zinc-950 rounded-lg p-4 overflow-x-auto mb-4;
+}
+
+.prose pre code {
+  @apply bg-transparent p-0 text-zinc-100;
+}
+
+.prose ul,
+.prose ol {
+  @apply mb-4 ml-6;
+}
+
+.prose li {
+  @apply mb-2;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-emerald-500 pl-4 italic my-4 text-zinc-600 dark:text-zinc-400;
+}
+
+.prose img {
+  @apply rounded-lg my-6;
+}

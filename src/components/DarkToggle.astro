@@ -1,0 +1,82 @@
+---
+---
+
+<button
+    id="theme-toggle"
+    type="button"
+    aria-label="Toggle dark mode"
+    class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-zinc-200/60 dark:border-zinc-800/60 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors"
+>
+    <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2m0 16v2m10-10h-2M4 12H2m15.535 6.465-1.414-1.414M7.879 7.879 6.465 6.465m12.07 0-1.414 1.414M7.879 16.121l-1.414 1.414" />
+    </svg>
+</button>
+
+<script is:inline>
+    (function() {
+        function updateIcon(isDark) {
+            const icon = document.getElementById('theme-icon');
+            if (!icon) return;
+
+            if (isDark) {
+                icon.innerHTML = '<path d="M21.64 13A9 9 0 1 1 11 2.36a7 7 0 1 0 10.64 10.64Z" fill="currentColor" />';
+                icon.setAttribute('fill', 'currentColor');
+                icon.removeAttribute('stroke');
+                icon.removeAttribute('stroke-width');
+                icon.removeAttribute('stroke-linecap');
+                icon.removeAttribute('stroke-linejoin');
+            } else {
+                icon.innerHTML = '<circle cx="12" cy="12" r="4" /><path d="M12 2v2m0 16v2m10-10h-2M4 12H2m15.535 6.465-1.414-1.414M7.879 7.879 6.465 6.465m12.07 0-1.414 1.414M7.879 16.121l-1.414 1.414" />';
+                icon.setAttribute('fill', 'none');
+                icon.setAttribute('stroke', 'currentColor');
+                icon.setAttribute('stroke-width', '2');
+                icon.setAttribute('stroke-linecap', 'round');
+                icon.setAttribute('stroke-linejoin', 'round');
+            }
+        }
+
+        function initTheme() {
+            const button = document.getElementById('theme-toggle');
+            if (!button) {
+                // Retry if button not found yet
+                setTimeout(initTheme, 100);
+                return;
+            }
+
+            // Check current theme from DOM
+            const isDark = document.documentElement.classList.contains('dark');
+            updateIcon(isDark);
+
+            // Toggle theme on click
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const htmlEl = document.documentElement;
+                const currentIsDark = htmlEl.classList.contains('dark');
+                const nextIsDark = !currentIsDark;
+
+                // Force toggle by removing and adding class
+                if (nextIsDark) {
+                    htmlEl.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    htmlEl.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                }
+
+                updateIcon(nextIsDark);
+            });
+        }
+
+        // Initialize after a small delay to ensure BaseLayout script runs first
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                setTimeout(initTheme, 50);
+            });
+        } else {
+            setTimeout(initTheme, 50);
+        }
+    })();
+</script>

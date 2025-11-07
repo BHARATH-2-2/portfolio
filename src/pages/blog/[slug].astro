@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection, getEntry } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import FadeIn from '../../components/motion/FadeIn.tsx';
+
+export async function getStaticPaths() {
+    const posts = await getCollection('blog');
+    return posts.map((post) => ({ params: { slug: post.slug } }));
+}
+
+const { slug } = Astro.params;
+const post = await getEntry('blog', slug!);
+const { Content } = await post.render();
+---
+<BaseLayout 
+    title={`${post.data.title} — Blog — Bharath N`} 
+    description={post.data.description}
+    type="article"
+    publishedTime={post.data.pubDate.toISOString()}
+>
+    <Fragment slot="app-header">
+        <Nav />
+    </Fragment>
+    <article class="prose prose-zinc dark:prose-invert max-w-none pt-10 pb-16">
+        <FadeIn client:visible as="h1" className="text-3xl font-bold tracking-tight">{post.data.title}</FadeIn>
+        <FadeIn client:visible delay={0.06} as="p" className="text-zinc-500">{new Date(post.data.pubDate).toLocaleDateString()}</FadeIn>
+        <FadeIn client:visible delay={0.12}>
+            <div class="mt-6">
+                <Content />
+            </div>
+        </FadeIn>
+    </article>
+    <Fragment slot="app-footer">
+        <Footer />
+    </Fragment>
+</BaseLayout>
+

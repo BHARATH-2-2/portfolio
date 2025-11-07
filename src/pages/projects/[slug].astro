@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection, getEntry } from 'astro:content';
+import FadeIn from '../../components/motion/FadeIn.tsx';
+
+export async function getStaticPaths() {
+    const entries = await getCollection('projects');
+    return entries.map((e) => ({ params: { slug: e.slug } }));
+}
+
+const { slug } = Astro.params;
+const project = await getEntry('projects', slug!);
+const { Content } = await project.render();
+---
+<BaseLayout title={`${project.data.title} — Project — Bharath N`} description={project.data.description}>
+    <Fragment slot="app-header">
+        <Nav />
+    </Fragment>
+    <article class="prose prose-zinc dark:prose-invert max-w-none pt-10 pb-16">
+        <FadeIn client:visible as="h1" className="text-3xl font-bold tracking-tight">{project.data.title}</FadeIn>
+        <FadeIn client:visible delay={0.06} as="p" className="text-zinc-500">{project.data.year}</FadeIn>
+        <FadeIn client:visible delay={0.12}>
+            <div class="mt-2 flex flex-wrap gap-2">
+                {project.data.tech?.map((t) => <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-100/60 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">{t}</span>)}
+            </div>
+        </FadeIn>
+        <FadeIn client:visible delay={0.18}>
+            {project.data.cover ? <img src={project.data.cover} alt="" class="rounded-md mt-6 aspect-video object-cover" /> : null}
+        </FadeIn>
+        <FadeIn client:visible delay={0.24}>
+            <div class="mt-6">
+                <Content />
+            </div>
+        </FadeIn>
+    </article>
+    <Fragment slot="app-footer">
+        <Footer />
+    </Fragment>
+</BaseLayout>
+

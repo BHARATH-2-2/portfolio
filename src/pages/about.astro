@@ -1,0 +1,172 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import FadeIn from '../components/motion/FadeIn.tsx';
+---
+
+<BaseLayout title="About — Bharath N">
+    <Fragment slot="app-header">
+        <Nav />
+    </Fragment>
+    
+    <section class="pt-10 pb-16">
+        <div class="max-w-4xl mx-auto">
+            <!-- Header with Photo -->
+            <FadeIn client:visible className="flex flex-col md:flex-row gap-8 items-start mb-12">
+                <div class="flex-shrink-0">
+                    <div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center text-white text-4xl md:text-5xl font-bold shadow-lg">
+                        BN
+                    </div>
+                    <!-- Replace the div above with an img tag when you have a photo:
+                    <img src="/avatar.jpg" alt="Bharath N" class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover shadow-lg" />
+                    -->
+                </div>
+                <div class="flex-1">
+                    <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">About Me</h1>
+                    <p class="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                        Hi, I'm Bharath N. I'm a full-stack developer passionate about building modern web applications with FastAPI, React, and AI technologies. I specialize in creating performant, scalable solutions that combine elegant user interfaces with robust backend systems.
+                    </p>
+                </div>
+            </FadeIn>
+
+            <!-- Journey Story -->
+            <FadeIn client:visible delay={0.06} className="mb-12">
+                <h2 class="text-2xl font-bold tracking-tight mb-6">My Journey</h2>
+                <div class="prose prose-zinc dark:prose-invert max-w-none">
+                    <div class="space-y-6">
+                        <div class="border-l-4 border-emerald-500 pl-6">
+                            <h3 class="text-xl font-semibold mb-2 text-emerald-600 dark:text-emerald-400">Learning</h3>
+                            <p class="text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                                My journey began with curiosity and a drive to understand how things work. I started by learning the fundamentals of programming, exploring different languages and paradigms. Through countless tutorials, courses, and documentation dives, I built a solid foundation in software development principles.
+                            </p>
+                        </div>
+                        <div class="border-l-4 border-emerald-500 pl-6">
+                            <h3 class="text-xl font-semibold mb-2 text-emerald-600 dark:text-emerald-400">Building</h3>
+                            <p class="text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                                Theory became practice as I started building real projects. From simple websites to complex full-stack applications, each project taught me something new. I've worked on projects ranging from restaurant websites to sophisticated AI-powered legal technology tools like LEXner, a full-stack Legal Named Entity Recognition system featuring graph visualization and conversational AI interfaces.
+                            </p>
+                        </div>
+                        <div class="border-l-4 border-emerald-500 pl-6">
+                            <h3 class="text-xl font-semibold mb-2 text-emerald-600 dark:text-emerald-400">Specializing</h3>
+                            <p class="text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                                Today, I focus on creating performant, scalable solutions that combine elegant user interfaces with robust backend systems. I specialize in modern web development with FastAPI and React, AI/ML integration, and building applications that prioritize both user experience and technical excellence.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </FadeIn>
+
+            <!-- Tech Stack -->
+            <FadeIn client:visible delay={0.12} className="mb-12">
+                <h2 class="text-2xl font-bold tracking-tight mb-6">Tech Stack & Tools</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <!-- Backend -->
+                    <div class="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-emerald-400 dark:hover:border-emerald-600 transition-colors">
+                        <div class="text-3xl mb-2">🐍</div>
+                        <div class="font-semibold text-sm">Python</div>
+                        <div class="text-xs text-zinc-500 mt-1">Backend</div>
+                    </div>
+                    <div class="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-emerald-400 dark:hover:border-emerald-600 transition-colors">
+                        <div class="text-3xl mb-2">⚡</div>
+                        <div class="font-semibold text-sm">FastAPI</div>
+                        <div class="text-xs text-zinc-500 mt-1">Backend</div>
+                    </div>
+                    <div class="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-emerald-400 dark:hover:border-emerald-600 transition-colors">
+                        <div class="text-3xl mb-2">📦</div>
+                        <div class="font-semibold text-sm">Pydantic</div>
+                        <div class="text-xs text-zinc-500 mt-1">Validation</div>
+                    </div>
+                    
+                    <!-- Frontend -->
+                    <div class="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-emerald-400 dark:hover:border-emerald-600 transition-colors">
+                        <div class="text-3xl mb-2">⚛️</div>
+                        <div class="font-semibold text-sm">React</div>
+                        <div class="text-xs text-zinc-500 mt-1">Frontend</div>
+                    </div>
+                    <div class="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-emerald-400 dark:hover:border-emerald-600 transition-colors">
+                        <div class="text-3xl mb-2">🎨</div>
+                        <div class="font-semibold text-sm">Tailwind CSS</div>
+                        <div class="text-xs text-zinc-500 mt-1">Styling</div>
+                    </div>
+                    <div class="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-emerald-400 dark:hover:border-emerald-600 transition-colors">
+                        <div class="text-3xl mb-2">📘</div>
+                        <div class="font-semibold text-sm">TypeScript</div>
+                        <div class="text-xs text-zinc-500 mt-1">Frontend</div>
+                    </div>
+                    <div class="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-emerald-400 dark:hover:border-emerald-600 transition-colors">
+                        <div class="text-3xl mb-2">🚀</div>
+                        <div class="font-semibold text-sm">Astro</div>
+                        <div class="text-xs text-zinc-500 mt-1">Framework</div>
+                    </div>
+                    
+                    <!-- AI/ML -->
+                    <div class="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-emerald-400 dark:hover:border-emerald-600 transition-colors">
+                        <div class="text-3xl mb-2">🤖</div>
+                        <div class="font-semibold text-sm">NLP</div>
+                        <div class="text-xs text-zinc-500 mt-1">AI/ML</div>
+                    </div>
+                    <div class="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-emerald-400 dark:hover:border-emerald-600 transition-colors">
+                        <div class="text-3xl mb-2">🔍</div>
+                        <div class="font-semibold text-sm">NER</div>
+                        <div class="text-xs text-zinc-500 mt-1">AI/ML</div>
+                    </div>
+                    
+                    <!-- Tools -->
+                    <div class="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-emerald-400 dark:hover:border-emerald-600 transition-colors">
+                        <div class="text-3xl mb-2">📝</div>
+                        <div class="font-semibold text-sm">MDX</div>
+                        <div class="text-xs text-zinc-500 mt-1">Content</div>
+                    </div>
+                    <div class="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-emerald-400 dark:hover:border-emerald-600 transition-colors">
+                        <div class="text-3xl mb-2">🌙</div>
+                        <div class="font-semibold text-sm">Dark Mode</div>
+                        <div class="text-xs text-zinc-500 mt-1">UX</div>
+                    </div>
+                </div>
+            </FadeIn>
+
+            <!-- Soft Skills -->
+            <FadeIn client:visible delay={0.18} className="mb-12">
+                <h2 class="text-2xl font-bold tracking-tight mb-6">Soft Skills</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="p-6 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">
+                        <div class="text-2xl mb-3">💬</div>
+                        <h3 class="font-semibold mb-2">Communication</h3>
+                        <p class="text-sm text-zinc-600 dark:text-zinc-400">
+                            Clear and effective communication with team members, stakeholders, and clients. I believe in transparent dialogue and active listening to ensure everyone is aligned.
+                        </p>
+                    </div>
+                    <div class="p-6 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">
+                        <div class="text-2xl mb-3">🤝</div>
+                        <h3 class="font-semibold mb-2">Collaboration</h3>
+                        <p class="text-sm text-zinc-600 dark:text-zinc-400">
+                            Working seamlessly in teams, contributing ideas, and supporting colleagues. I thrive in collaborative environments where we build something greater together.
+                        </p>
+                    </div>
+                    <div class="p-6 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">
+                        <div class="text-2xl mb-3">🧩</div>
+                        <h3 class="font-semibold mb-2">Problem-Solving</h3>
+                        <p class="text-sm text-zinc-600 dark:text-zinc-400">
+                            Breaking down complex challenges into manageable pieces, thinking critically, and finding creative solutions. Every problem is an opportunity to learn and grow.
+                        </p>
+                    </div>
+                </div>
+            </FadeIn>
+
+            <!-- Additional Info -->
+            <FadeIn client:visible delay={0.24}>
+                <div class="prose prose-zinc dark:prose-invert max-w-none">
+                    <p class="text-zinc-600 dark:text-zinc-400">
+                        This portfolio site is built with Astro v4, Tailwind CSS, MDX, and React islands, designed for performance and top Lighthouse scores.
+                    </p>
+                </div>
+            </FadeIn>
+        </div>
+    </section>
+    
+    <Fragment slot="app-footer">
+        <Footer />
+    </Fragment>
+</BaseLayout>
+

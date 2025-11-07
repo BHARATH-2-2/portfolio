@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+import FadeIn from '../../components/motion/FadeIn.tsx';
+import Stagger from '../../components/motion/Stagger.tsx';
+
+const projects = (await getCollection('projects')).sort((a, b) => b.data.year - a.data.year);
+---
+<BaseLayout title="Projects — Bharath N" description="Selected work, experiments, and achievements by Bharath N.">
+    <Fragment slot="app-header">
+        <Nav />
+    </Fragment>
+    <section class="pt-10 pb-16">
+        <FadeIn client:visible as="h1" className="text-3xl font-bold tracking-tight">Projects</FadeIn>
+        <FadeIn client:visible delay={0.06} as="p" className="mt-2 text-zinc-500">A selection of work focused on performance and delightful UX.</FadeIn>
+
+        <Stagger client:visible className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.map(({ slug, data }) => (
+                <a href={`/projects/${slug}`}
+                   class="group rounded-xl border border-zinc-200/60 dark:border-zinc-800/60 p-4 hover:border-emerald-400/60 hover:shadow-sm transition-all">
+                    {data.cover ? <img src={data.cover} alt="" class="rounded-md mb-3 aspect-video object-cover" /> : null}
+                    <div class="text-sm text-zinc-500">{data.year}</div>
+                    <div class="mt-1 font-medium group-hover:text-emerald-600">{data.title}</div>
+                    <p class="mt-1 text-sm text-zinc-500 line-clamp-2">{data.description}</p>
+                    <div class="mt-3 flex flex-wrap gap-2">
+                        {data.tech?.slice(0,4).map((t) => <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-100/60 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300">{t}</span>)}
+                    </div>
+                </a>
+            ))}
+        </Stagger>
+    </section>
+    <Fragment slot="app-footer">
+        <Footer />
+    </Fragment>
+</BaseLayout>
+
